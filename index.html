@@ -350,12 +350,13 @@
       padding: 22px;
       transform-style: preserve-3d;
       animation: float 5s ease-in-out infinite;
+      text-align: center; /* Center avatar and headings */
     }
 
     .photo {
-      width: 240px;
-      height: 360px;
-      margin: 0 auto;
+      width: 220px; /* Adjusted to 220px to fit avatar perfectly */
+      height: 330px; /* Perfect 2:3 ratio */
+      margin: 0 auto 16px;
       border-radius: 8px;
       overflow: hidden;
       background: rgba(25, 111, 79, 0.05);
@@ -397,6 +398,7 @@
       display: grid;
       gap: 10px;
       margin: 18px 0 0;
+      text-align: left; /* Keep metadata items left-aligned */
     }
 
     .profile-card div {
@@ -1031,6 +1033,74 @@
       }
     }
 
+    /* Scroll progress bar */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--green), var(--blue), var(--rose));
+      z-index: 1000;
+      transition: width 80ms linear;
+    }
+
+    /* Custom cursor glow */
+    .cursor-glow {
+      position: fixed;
+      width: 450px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(39, 103, 199, 0.07) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: -1;
+      transform: translate(-50%, -50%);
+      transition: left 0.1s cubic-bezier(0.1, 0.8, 0.3, 1), top 0.1s cubic-bezier(0.1, 0.8, 0.3, 1);
+    }
+
+    /* Gradient sweep animation for text */
+    .gradient-text-ai {
+      background: linear-gradient(120deg, var(--green), var(--blue), var(--rose), var(--green));
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientSweep 5s linear infinite;
+      font-weight: 800;
+    }
+
+    @keyframes gradientSweep {
+      0% { background-position: 0% center; }
+      100% { background-position: 200% center; }
+    }
+
+    /* Modern interactive nav links underline */
+    .nav-links a {
+      position: relative;
+    }
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      bottom: 4px;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: var(--green);
+      transition: width 220ms ease, left 220ms ease;
+    }
+    .nav-links a:hover::after {
+      width: calc(100% - 24px);
+      left: 12px;
+    }
+
+    /* Tag pulse on card hover */
+    .project-card:hover .tag {
+      animation: tagPulse 1s ease-in-out infinite alternate;
+    }
+    @keyframes tagPulse {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.08); background: rgba(25, 111, 79, 0.18); }
+    }
+
     .footer {
       padding: 36px 0 48px;
       border-top: 1px solid var(--line);
@@ -1290,10 +1360,13 @@
         scroll-behavior: auto !important;
       }
     }
-  </style>
+</style>
 </head>
 
 <body>
+  <!-- Scroll progress indicator -->
+  <div class="scroll-progress"></div>
+
   <div class="motion-bg" aria-hidden="true">
     <span style="--size: 34px; --x: 7%; --y: 18%; --color: rgba(25, 111, 79, 0.44); --time: 8s;"></span>
     <span style="--size: 18px; --x: 20%; --y: 72%; --color: rgba(39, 103, 199, 0.46); --time: 9s;"></span>
@@ -1323,7 +1396,7 @@
     <div class="site-shell hero">
       <div>
         <div class="eyebrow"><span class="pulse-dot"></span>Portfolio cá nhân - UET, VNU</div>
-        <h1>Hành trình học Công nghệ số và Ứng dụng Trí tuệ nhân tạo</h1>
+        <h1>Hành trình học <span class="gradient-text-ai">Công nghệ số</span> và Ứng dụng <span class="gradient-text-ai">Trí tuệ nhân tạo</span></h1>
         <p>
           Portfolio này tổng hợp các sản phẩm học tập từ bài 1 đến bài 6, thể hiện khả năng tổ chức thông tin,
           sử dụng công cụ số, viết prompt, làm việc trực tuyến, sáng tạo nội dung với AI và nhìn nhận trách nhiệm học
@@ -1850,6 +1923,24 @@
     stage.addEventListener("mouseleave", () => {
       profileCard.style.animation = "";
       profileCard.style.transform = "";
+    });
+
+    // Scroll progress bar logic
+    window.addEventListener("scroll", () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      const progress = document.querySelector(".scroll-progress");
+      if (progress) progress.style.width = scrolled + "%";
+    });
+
+    // Custom cursor glow effect
+    const glow = document.createElement("div");
+    glow.className = "cursor-glow";
+    document.body.appendChild(glow);
+    window.addEventListener("mousemove", (e) => {
+      glow.style.left = e.clientX + "px";
+      glow.style.top = e.clientY + "px";
     });
   </script>
 </body>
