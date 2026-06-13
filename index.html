@@ -350,12 +350,15 @@
       padding: 22px;
       transform-style: preserve-3d;
       animation: float 5s ease-in-out infinite;
-      text-align: center; /* Center avatar and headings */
+      text-align: center;
+      /* Center avatar and headings */
     }
 
     .photo {
-      width: 220px; /* Adjusted to 220px to fit avatar perfectly */
-      height: 330px; /* Perfect 2:3 ratio */
+      width: 220px;
+      /* Adjusted to 220px to fit avatar perfectly */
+      height: 330px;
+      /* Perfect 2:3 ratio */
       margin: 0 auto 16px;
       border-radius: 8px;
       overflow: hidden;
@@ -398,7 +401,8 @@
       display: grid;
       gap: 10px;
       margin: 18px 0 0;
-      text-align: left; /* Keep metadata items left-aligned */
+      text-align: left;
+      /* Keep metadata items left-aligned */
     }
 
     .profile-card div {
@@ -1069,14 +1073,20 @@
     }
 
     @keyframes gradientSweep {
-      0% { background-position: 0% center; }
-      100% { background-position: 200% center; }
+      0% {
+        background-position: 0% center;
+      }
+
+      100% {
+        background-position: 200% center;
+      }
     }
 
     /* Modern interactive nav links underline */
     .nav-links a {
       position: relative;
     }
+
     .nav-links a::after {
       content: "";
       position: absolute;
@@ -1087,6 +1097,7 @@
       background: var(--green);
       transition: width 220ms ease, left 220ms ease;
     }
+
     .nav-links a:hover::after {
       width: calc(100% - 24px);
       left: 12px;
@@ -1096,9 +1107,16 @@
     .project-card:hover .tag {
       animation: tagPulse 1s ease-in-out infinite alternate;
     }
+
     @keyframes tagPulse {
-      0% { transform: scale(1); }
-      100% { transform: scale(1.08); background: rgba(25, 111, 79, 0.18); }
+      0% {
+        transform: scale(1);
+      }
+
+      100% {
+        transform: scale(1.08);
+        background: rgba(25, 111, 79, 0.18);
+      }
     }
 
     .footer {
@@ -1360,7 +1378,7 @@
         scroll-behavior: auto !important;
       }
     }
-</style>
+  </style>
 </head>
 
 <body>
@@ -1396,7 +1414,8 @@
     <div class="site-shell hero">
       <div>
         <div class="eyebrow"><span class="pulse-dot"></span>Portfolio cá nhân - UET, VNU</div>
-        <h1>Hành trình học <span class="gradient-text-ai">Công nghệ số</span> và Ứng dụng <span class="gradient-text-ai">Trí tuệ nhân tạo</span></h1>
+        <h1>Hành trình học <span class="gradient-text-ai">Công nghệ số</span> và Ứng dụng <span
+            class="gradient-text-ai">Trí tuệ nhân tạo</span></h1>
         <p>
           Portfolio này tổng hợp các sản phẩm học tập từ bài 1 đến bài 6, thể hiện khả năng tổ chức thông tin,
           sử dụng công cụ số, viết prompt, làm việc trực tuyến, sáng tạo nội dung với AI và nhìn nhận trách nhiệm học
