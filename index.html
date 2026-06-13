@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="vi">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -352,15 +353,14 @@
     }
 
     .photo {
-      height: 310px;
+      width: 240px;
+      height: 360px;
+      margin: 0 auto;
       border-radius: 8px;
-      display: grid;
-      place-items: center;
       overflow: hidden;
       background: rgba(25, 111, 79, 0.05);
       border: 1px solid var(--line);
-      color: #fff;
-      text-align: center;
+      box-shadow: 0 8px 24px rgba(16, 34, 29, 0.08);
     }
 
     .photo img {
@@ -480,7 +480,7 @@
       box-shadow: 0 18px 50px rgba(16, 34, 29, 0.1);
       transform: translateY(16px);
       opacity: 0;
-      transition: 650ms cubic-bezier(.2,.8,.2,1);
+      transition: 650ms cubic-bezier(.2, .8, .2, 1);
     }
 
     .project-card.is-visible {
@@ -766,6 +766,50 @@
       background: #fff;
     }
 
+    /* Scrollable container for cropped assignment images */
+    .assignment-scroll-container {
+      position: relative;
+      z-index: 2;
+      height: 560px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding-right: 6px;
+      scroll-behavior: smooth;
+    }
+
+    .assignment-scroll-container img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: none;
+      object-fit: contain;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      box-shadow: 0 8px 24px rgba(16, 34, 29, 0.1);
+      background: #fff;
+    }
+
+    .assignment-scroll-container::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .assignment-scroll-container::-webkit-scrollbar-track {
+      background: rgba(16, 34, 29, 0.04);
+      border-radius: 99px;
+    }
+
+    .assignment-scroll-container::-webkit-scrollbar-thumb {
+      background: rgba(25, 111, 79, 0.4);
+      border-radius: 99px;
+      transition: background 180ms ease;
+    }
+
+    .assignment-scroll-container::-webkit-scrollbar-thumb:hover {
+      background: rgba(25, 111, 79, 0.7);
+    }
+
     .preview-note {
       position: absolute;
       z-index: 2;
@@ -910,7 +954,7 @@
       height: 100%;
       border-radius: inherit;
       background: linear-gradient(90deg, var(--green), var(--blue), var(--rose));
-      transition: width 1000ms cubic-bezier(.2,.8,.2,1);
+      transition: width 1000ms cubic-bezier(.2, .8, .2, 1);
     }
 
     .meter.is-visible .meter-fill {
@@ -981,6 +1025,7 @@
         grid-template-columns: 1fr;
         gap: 20px;
       }
+
       .bio-body {
         padding: 24px;
       }
@@ -996,7 +1041,7 @@
     .reveal {
       transform: translateY(18px);
       opacity: 0;
-      transition: 650ms cubic-bezier(.2,.8,.2,1);
+      transition: 650ms cubic-bezier(.2, .8, .2, 1);
     }
 
     .reveal.is-visible {
@@ -1005,58 +1050,130 @@
     }
 
     @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(214, 81, 111, 0.45); }
-      70% { box-shadow: 0 0 0 14px rgba(214, 81, 111, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(214, 81, 111, 0); }
+      0% {
+        box-shadow: 0 0 0 0 rgba(214, 81, 111, 0.45);
+      }
+
+      70% {
+        box-shadow: 0 0 0 14px rgba(214, 81, 111, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(214, 81, 111, 0);
+      }
     }
 
     @keyframes rotate {
-      to { transform: rotate(360deg); }
+      to {
+        transform: rotate(360deg);
+      }
     }
 
     @keyframes float {
-      0%, 100% { transform: translateY(0) rotateX(0deg) rotateY(0deg); }
-      50% { transform: translateY(-16px) rotateX(1deg) rotateY(-2deg); }
+
+      0%,
+      100% {
+        transform: translateY(0) rotateX(0deg) rotateY(0deg);
+      }
+
+      50% {
+        transform: translateY(-16px) rotateX(1deg) rotateY(-2deg);
+      }
     }
 
     @keyframes morph {
-      0%, 100% { transform: rotate(0deg) scale(1); border-radius: 40%; }
-      50% { transform: rotate(26deg) scale(1.15); border-radius: 32% 58% 41% 52%; }
+
+      0%,
+      100% {
+        transform: rotate(0deg) scale(1);
+        border-radius: 40%;
+      }
+
+      50% {
+        transform: rotate(26deg) scale(1.15);
+        border-radius: 32% 58% 41% 52%;
+      }
     }
 
     @keyframes drift {
-      from { transform: translate3d(0, 0, 0) rotate(0deg); }
-      to { transform: translate3d(34px, -42px, 0) rotate(36deg); }
+      from {
+        transform: translate3d(0, 0, 0) rotate(0deg);
+      }
+
+      to {
+        transform: translate3d(34px, -42px, 0) rotate(36deg);
+      }
     }
 
     @keyframes rise {
-      from { transform: translate3d(0, 24px, 0) scale(0.86); }
-      to { transform: translate3d(-28px, -48px, 0) scale(1.1); }
+      from {
+        transform: translate3d(0, 24px, 0) scale(0.86);
+      }
+
+      to {
+        transform: translate3d(-28px, -48px, 0) scale(1.1);
+      }
     }
 
     @keyframes wiggle {
-      0% { transform: translate3d(0, 0, 0) rotate(14deg); }
-      100% { transform: translate3d(22px, 38px, 0) rotate(58deg); }
+      0% {
+        transform: translate3d(0, 0, 0) rotate(14deg);
+      }
+
+      100% {
+        transform: translate3d(22px, 38px, 0) rotate(58deg);
+      }
     }
 
     @keyframes marquee {
-      to { transform: translateX(-50%); }
+      to {
+        transform: translateX(-50%);
+      }
     }
 
     @keyframes badgeFloat {
-      0%, 100% { transform: translateY(0) rotate(-2deg); }
-      50% { transform: translateY(-14px) rotate(4deg); }
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(-2deg);
+      }
+
+      50% {
+        transform: translateY(-14px) rotate(4deg);
+      }
     }
 
     @keyframes equalize {
-      0%, 100% { height: 26%; opacity: 0.65; }
-      35% { height: 100%; opacity: 1; }
-      70% { height: 48%; opacity: 0.82; }
+
+      0%,
+      100% {
+        height: 26%;
+        opacity: 0.65;
+      }
+
+      35% {
+        height: 100%;
+        opacity: 1;
+      }
+
+      70% {
+        height: 48%;
+        opacity: 0.82;
+      }
     }
 
     @keyframes previewPulse {
-      0%, 100% { opacity: 0.5; transform: scale(1); }
-      50% { opacity: 0.95; transform: scale(0.985); }
+
+      0%,
+      100% {
+        opacity: 0.5;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.95;
+        transform: scale(0.985);
+      }
     }
 
     @media (max-width: 900px) {
@@ -1089,6 +1206,7 @@
     }
 
     @media (max-width: 620px) {
+
       .site-shell,
       .nav-inner {
         width: min(100% - 28px, 1180px);
@@ -1107,7 +1225,12 @@
       }
 
       .photo {
-        height: 250px;
+        width: 180px;
+        height: 270px;
+      }
+
+      .assignment-scroll-container {
+        height: 420px;
       }
 
       .assignment-copy,
@@ -1157,6 +1280,7 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
+
       *,
       *::before,
       *::after {
@@ -1168,6 +1292,7 @@
     }
   </style>
 </head>
+
 <body>
   <div class="motion-bg" aria-hidden="true">
     <span style="--size: 34px; --x: 7%; --y: 18%; --color: rgba(25, 111, 79, 0.44); --time: 8s;"></span>
@@ -1201,7 +1326,8 @@
         <h1>Hành trình học Công nghệ số và Ứng dụng Trí tuệ nhân tạo</h1>
         <p>
           Portfolio này tổng hợp các sản phẩm học tập từ bài 1 đến bài 6, thể hiện khả năng tổ chức thông tin,
-          sử dụng công cụ số, viết prompt, làm việc trực tuyến, sáng tạo nội dung với AI và nhìn nhận trách nhiệm học thuật.
+          sử dụng công cụ số, viết prompt, làm việc trực tuyến, sáng tạo nội dung với AI và nhìn nhận trách nhiệm học
+          thuật.
         </p>
         <div class="hero-actions">
           <a class="button primary" href="#projects">Xem bài tập</a>
@@ -1273,12 +1399,26 @@
           <h3>Về bản thân tôi</h3>
           <div class="bio-text">
             <div>
-              <p style="margin-bottom: 16px;">Xin chào, tôi là <strong>Phạm Tuấn Quang</strong>, sinh viên ngành Công nghệ Thông tin với niềm đam mê dành cho công nghệ và phát triển phần mềm. Tôi luôn tò mò về cách các hệ thống phần mềm được xây dựng và vận hành, từ đó không ngừng tìm hiểu, học hỏi và nâng cao kiến thức trong lĩnh vực lập trình. Đối với tôi, công nghệ không chỉ là công cụ mà còn là phương tiện để giải quyết các vấn đề thực tế và tạo ra những giá trị hữu ích cho cộng đồng.</p>
-              <p>Trong quá trình học tập, tôi đã chủ động nghiên cứu nhiều công nghệ và tham gia xây dựng các dự án cá nhân để rèn luyện kỹ năng lập trình, tư duy logic và khả năng giải quyết vấn đề. Tôi đặc biệt yêu thích việc biến những ý tưởng từ bản thiết kế hoặc yêu cầu ban đầu thành các sản phẩm có thể hoạt động thực tế. Mỗi dự án đều giúp tôi tích lũy thêm kinh nghiệm, cải thiện khả năng làm việc và hiểu rõ hơn về quy trình phát triển phần mềm.</p>
+              <p style="margin-bottom: 16px;">Xin chào, tôi là <strong>Phạm Tuấn Quang</strong>, sinh viên ngành Công
+                nghệ Thông tin với niềm đam mê dành cho công nghệ và phát triển phần mềm. Tôi luôn tò mò về cách các hệ
+                thống phần mềm được xây dựng và vận hành, từ đó không ngừng tìm hiểu, học hỏi và nâng cao kiến thức
+                trong lĩnh vực lập trình. Đối với tôi, công nghệ không chỉ là công cụ mà còn là phương tiện để giải
+                quyết các vấn đề thực tế và tạo ra những giá trị hữu ích cho cộng đồng.</p>
+              <p>Trong quá trình học tập, tôi đã chủ động nghiên cứu nhiều công nghệ và tham gia xây dựng các dự án cá
+                nhân để rèn luyện kỹ năng lập trình, tư duy logic và khả năng giải quyết vấn đề. Tôi đặc biệt yêu thích
+                việc biến những ý tưởng từ bản thiết kế hoặc yêu cầu ban đầu thành các sản phẩm có thể hoạt động thực
+                tế. Mỗi dự án đều giúp tôi tích lũy thêm kinh nghiệm, cải thiện khả năng làm việc và hiểu rõ hơn về quy
+                trình phát triển phần mềm.</p>
             </div>
             <div>
-              <p style="margin-bottom: 16px;">Bên cạnh kiến thức chuyên môn, tôi luôn đề cao tinh thần tự học, khả năng thích nghi và sự kiên trì trước những thử thách. Tôi tin rằng trong lĩnh vực công nghệ, việc học hỏi liên tục là yếu tố quan trọng để bắt kịp sự phát triển nhanh chóng của ngành. Vì vậy, tôi luôn sẵn sàng tiếp cận những công nghệ mới, mở rộng kiến thức và hoàn thiện bản thân mỗi ngày.</p>
-              <p>Mục tiêu của tôi là trở thành một kỹ sư phần mềm chuyên nghiệp, có khả năng xây dựng các sản phẩm chất lượng, hiệu quả và mang lại trải nghiệm tốt cho người dùng. Tôi mong muốn được tham gia vào những dự án có ý nghĩa, làm việc trong môi trường năng động và không ngừng phát triển để tạo ra những giá trị tích cực thông qua công nghệ.</p>
+              <p style="margin-bottom: 16px;">Bên cạnh kiến thức chuyên môn, tôi luôn đề cao tinh thần tự học, khả năng
+                thích nghi và sự kiên trì trước những thử thách. Tôi tin rằng trong lĩnh vực công nghệ, việc học hỏi
+                liên tục là yếu tố quan trọng để bắt kịp sự phát triển nhanh chóng của ngành. Vì vậy, tôi luôn sẵn sàng
+                tiếp cận những công nghệ mới, mở rộng kiến thức và hoàn thiện bản thân mỗi ngày.</p>
+              <p>Mục tiêu của tôi là trở thành một kỹ sư phần mềm chuyên nghiệp, có khả năng xây dựng các sản phẩm chất
+                lượng, hiệu quả và mang lại trải nghiệm tốt cho người dùng. Tôi mong muốn được tham gia vào những dự án
+                có ý nghĩa, làm việc trong môi trường năng động và không ngừng phát triển để tạo ra những giá trị tích
+                cực thông qua công nghệ.</p>
             </div>
           </div>
         </div>
@@ -1322,7 +1462,11 @@
             <p>Trình bày thao tác cơ bản với tệp tin, thư mục, cách sắp xếp cấu trúc lưu trữ và quy tắc đặt tên tệp.</p>
             <a href="#bai-1-detail">Xem chi tiết bài 1</a>
             <div class="sparkline" aria-hidden="true">
-              <i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i style="--i:4"></i><i style="--i:5"></i><i style="--i:6"></i><i style="--i:7"></i><i style="--i:8"></i><i style="--i:9"></i><i style="--i:10"></i><i style="--i:11"></i><i style="--i:12"></i><i style="--i:13"></i><i style="--i:14"></i><i style="--i:15"></i><i style="--i:16"></i><i style="--i:17"></i><i style="--i:18"></i>
+              <i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i style="--i:4"></i><i
+                style="--i:5"></i><i style="--i:6"></i><i style="--i:7"></i><i style="--i:8"></i><i style="--i:9"></i><i
+                style="--i:10"></i><i style="--i:11"></i><i style="--i:12"></i><i style="--i:13"></i><i
+                style="--i:14"></i><i style="--i:15"></i><i style="--i:16"></i><i style="--i:17"></i><i
+                style="--i:18"></i>
             </div>
           </div>
         </article>
@@ -1332,10 +1476,15 @@
           <div class="project-body">
             <span class="tag">Bai 2</span>
             <h3>Khai thác dữ liệu và thông tin</h3>
-            <p>Mô tả quá trình tìm kiếm học thuật bằng từ khóa, bộ lọc, nguồn tin tin cậy và cách đánh giá chất lượng nguồn.</p>
+            <p>Mô tả quá trình tìm kiếm học thuật bằng từ khóa, bộ lọc, nguồn tin tin cậy và cách đánh giá chất lượng
+              nguồn.</p>
             <a href="#bai-2-detail">Xem chi tiết bài 2</a>
             <div class="sparkline" aria-hidden="true">
-              <i style="--i:4"></i><i style="--i:2"></i><i style="--i:6"></i><i style="--i:8"></i><i style="--i:1"></i><i style="--i:5"></i><i style="--i:9"></i><i style="--i:3"></i><i style="--i:7"></i><i style="--i:11"></i><i style="--i:10"></i><i style="--i:12"></i><i style="--i:14"></i><i style="--i:13"></i><i style="--i:16"></i><i style="--i:15"></i><i style="--i:18"></i><i style="--i:17"></i>
+              <i style="--i:4"></i><i style="--i:2"></i><i style="--i:6"></i><i style="--i:8"></i><i
+                style="--i:1"></i><i style="--i:5"></i><i style="--i:9"></i><i style="--i:3"></i><i style="--i:7"></i><i
+                style="--i:11"></i><i style="--i:10"></i><i style="--i:12"></i><i style="--i:14"></i><i
+                style="--i:13"></i><i style="--i:16"></i><i style="--i:15"></i><i style="--i:18"></i><i
+                style="--i:17"></i>
             </div>
           </div>
         </article>
@@ -1345,10 +1494,15 @@
           <div class="project-body">
             <span class="tag">Bai 3</span>
             <h3>Tổng quan về trí tuệ nhân tạo</h3>
-            <p>So sánh prompt ban đầu và prompt cải tiến, kết quả đầu ra của AI, cùng những điều rút ra khi tối ưu yêu cầu.</p>
+            <p>So sánh prompt ban đầu và prompt cải tiến, kết quả đầu ra của AI, cùng những điều rút ra khi tối ưu yêu
+              cầu.</p>
             <a href="#bai-3-detail">Xem chi tiết bài 3</a>
             <div class="sparkline" aria-hidden="true">
-              <i style="--i:9"></i><i style="--i:1"></i><i style="--i:8"></i><i style="--i:2"></i><i style="--i:7"></i><i style="--i:3"></i><i style="--i:6"></i><i style="--i:4"></i><i style="--i:5"></i><i style="--i:10"></i><i style="--i:12"></i><i style="--i:11"></i><i style="--i:14"></i><i style="--i:13"></i><i style="--i:16"></i><i style="--i:15"></i><i style="--i:18"></i><i style="--i:17"></i>
+              <i style="--i:9"></i><i style="--i:1"></i><i style="--i:8"></i><i style="--i:2"></i><i
+                style="--i:7"></i><i style="--i:3"></i><i style="--i:6"></i><i style="--i:4"></i><i style="--i:5"></i><i
+                style="--i:10"></i><i style="--i:12"></i><i style="--i:11"></i><i style="--i:14"></i><i
+                style="--i:13"></i><i style="--i:16"></i><i style="--i:15"></i><i style="--i:18"></i><i
+                style="--i:17"></i>
             </div>
           </div>
         </article>
@@ -1361,7 +1515,11 @@
             <p>Minh chứng việc sử dụng công cụ hợp tác trực tuyến, quản lý nhiệm vụ nhóm và trao đổi tài liệu.</p>
             <a href="#bai-4-detail">Xem chi tiết bài 4</a>
             <div class="sparkline" aria-hidden="true">
-              <i style="--i:3"></i><i style="--i:5"></i><i style="--i:7"></i><i style="--i:9"></i><i style="--i:11"></i><i style="--i:13"></i><i style="--i:15"></i><i style="--i:17"></i><i style="--i:2"></i><i style="--i:4"></i><i style="--i:6"></i><i style="--i:8"></i><i style="--i:10"></i><i style="--i:12"></i><i style="--i:14"></i><i style="--i:16"></i><i style="--i:18"></i><i style="--i:1"></i>
+              <i style="--i:3"></i><i style="--i:5"></i><i style="--i:7"></i><i style="--i:9"></i><i
+                style="--i:11"></i><i style="--i:13"></i><i style="--i:15"></i><i style="--i:17"></i><i
+                style="--i:2"></i><i style="--i:4"></i><i style="--i:6"></i><i style="--i:8"></i><i
+                style="--i:10"></i><i style="--i:12"></i><i style="--i:14"></i><i style="--i:16"></i><i
+                style="--i:18"></i><i style="--i:1"></i>
             </div>
           </div>
         </article>
@@ -1371,10 +1529,15 @@
           <div class="project-body">
             <span class="tag">Bai 5</span>
             <h3>Sáng tạo nội dung số</h3>
-            <p>Giới thiệu sản phẩm nội dung được hỗ trợ bởi AI tạo sinh như hình ảnh, video, bài viết hoặc bản thiết kế.</p>
+            <p>Giới thiệu sản phẩm nội dung được hỗ trợ bởi AI tạo sinh như hình ảnh, video, bài viết hoặc bản thiết kế.
+            </p>
             <a href="#bai-5-detail">Xem chi tiết bài 5</a>
             <div class="sparkline" aria-hidden="true">
-              <i style="--i:12"></i><i style="--i:10"></i><i style="--i:8"></i><i style="--i:6"></i><i style="--i:4"></i><i style="--i:2"></i><i style="--i:1"></i><i style="--i:3"></i><i style="--i:5"></i><i style="--i:7"></i><i style="--i:9"></i><i style="--i:11"></i><i style="--i:13"></i><i style="--i:15"></i><i style="--i:17"></i><i style="--i:18"></i><i style="--i:16"></i><i style="--i:14"></i>
+              <i style="--i:12"></i><i style="--i:10"></i><i style="--i:8"></i><i style="--i:6"></i><i
+                style="--i:4"></i><i style="--i:2"></i><i style="--i:1"></i><i style="--i:3"></i><i style="--i:5"></i><i
+                style="--i:7"></i><i style="--i:9"></i><i style="--i:11"></i><i style="--i:13"></i><i
+                style="--i:15"></i><i style="--i:17"></i><i style="--i:18"></i><i style="--i:16"></i><i
+                style="--i:14"></i>
             </div>
           </div>
         </article>
@@ -1384,10 +1547,15 @@
           <div class="project-body">
             <span class="tag">Bai 6</span>
             <h3>An toàn và liêm chính học thuật</h3>
-            <p>Nêu quan điểm về sử dụng AI có trách nhiệm, trích dẫn nguồn, bảo mật thông tin và tránh phụ thuộc công cụ.</p>
+            <p>Nêu quan điểm về sử dụng AI có trách nhiệm, trích dẫn nguồn, bảo mật thông tin và tránh phụ thuộc công
+              cụ.</p>
             <a href="#bai-6-detail">Xem chi tiết bài 6</a>
             <div class="sparkline" aria-hidden="true">
-              <i style="--i:6"></i><i style="--i:12"></i><i style="--i:4"></i><i style="--i:10"></i><i style="--i:2"></i><i style="--i:8"></i><i style="--i:14"></i><i style="--i:1"></i><i style="--i:16"></i><i style="--i:3"></i><i style="--i:18"></i><i style="--i:5"></i><i style="--i:17"></i><i style="--i:7"></i><i style="--i:15"></i><i style="--i:9"></i><i style="--i:13"></i><i style="--i:11"></i>
+              <i style="--i:6"></i><i style="--i:12"></i><i style="--i:4"></i><i style="--i:10"></i><i
+                style="--i:2"></i><i style="--i:8"></i><i style="--i:14"></i><i style="--i:1"></i><i
+                style="--i:16"></i><i style="--i:3"></i><i style="--i:18"></i><i style="--i:5"></i><i
+                style="--i:17"></i><i style="--i:7"></i><i style="--i:15"></i><i style="--i:9"></i><i
+                style="--i:13"></i><i style="--i:11"></i>
             </div>
           </div>
         </article>
@@ -1430,8 +1598,13 @@
           </ul>
         </div>
         <figure class="assignment-preview">
-          <img src="assets/bai-1-noi-dung.png" alt="Nội dung bài 1 về thao tác cơ bản với tệp tin và thư mục">
-          <figcaption class="preview-note">Ảnh minh chứng bài 1 đã được ghép vào portfolio</figcaption>
+          <div class="assignment-scroll-container">
+            <img src="assets/bai-1-part-1.png" alt="Nội dung bài 1 - Phần 1">
+            <img src="assets/bai-1-part-2.png" alt="Nội dung bài 1 - Phần 2">
+            <img src="assets/bai-1-part-3.png" alt="Nội dung bài 1 - Phần 3">
+            <img src="assets/bai-1-part-4.png" alt="Nội dung bài 1 - Phần 4">
+          </div>
+          <figcaption class="preview-note">Cuộn để xem toàn bộ minh chứng</figcaption>
         </figure>
       </article>
 
@@ -1453,8 +1626,11 @@
           </ul>
         </div>
         <figure class="assignment-preview">
-          <img src="assets/bai-2-noi-dung.png" alt="Nội dung bài 2 về tìm kiếm và đánh giá thông tin học thuật">
-          <figcaption class="preview-note">Nguồn học thuật, tài liệu tham khảo và đánh giá độ tin cậy</figcaption>
+          <div class="assignment-scroll-container">
+            <img src="assets/bai-2-part-1.png" alt="Nội dung bài 2 - Phần 1">
+            <img src="assets/bai-2-part-2.png" alt="Nội dung bài 2 - Phần 2">
+          </div>
+          <figcaption class="preview-note">Cuộn để xem toàn bộ minh chứng</figcaption>
         </figure>
       </article>
 
@@ -1476,8 +1652,14 @@
           </ul>
         </div>
         <figure class="assignment-preview">
-          <img src="assets/bai-3-noi-dung.png" alt="Nội dung bài 3 về viết prompt hiệu quả cho học tập">
-          <figcaption class="preview-note">So sánh prompt và kết quả đầu ra của AI</figcaption>
+          <div class="assignment-scroll-container">
+            <img src="assets/bai-3-part-1.png" alt="Nội dung bài 3 - Phần 1">
+            <img src="assets/bai-3-part-2.png" alt="Nội dung bài 3 - Phần 2">
+            <img src="assets/bai-3-part-3.png" alt="Nội dung bài 3 - Phần 3">
+            <img src="assets/bai-3-part-4.png" alt="Nội dung bài 3 - Phần 4">
+            <img src="assets/bai-3-part-5.png" alt="Nội dung bài 3 - Phần 5">
+          </div>
+          <figcaption class="preview-note">Cuộn để xem toàn bộ minh chứng</figcaption>
         </figure>
       </article>
 
@@ -1499,8 +1681,13 @@
           </ul>
         </div>
         <figure class="assignment-preview">
-          <img src="assets/bai-4-noi-dung.png" alt="Nội dung bài 4 về công cụ hợp tác trực tuyến cho dự án nhóm">
-          <figcaption class="preview-note">GitHub, Discord, database và minh chứng làm việc nhóm</figcaption>
+          <div class="assignment-scroll-container">
+            <img src="assets/bai-4-part-1.png" alt="Nội dung bài 4 - Phần 1">
+            <img src="assets/bai-4-part-2.png" alt="Nội dung bài 4 - Phần 2">
+            <img src="assets/bai-4-part-3.png" alt="Nội dung bài 4 - Phần 3">
+            <img src="assets/bai-4-part-4.png" alt="Nội dung bài 4 - Phần 4">
+          </div>
+          <figcaption class="preview-note">Cuộn để xem toàn bộ minh chứng</figcaption>
         </figure>
       </article>
 
@@ -1522,8 +1709,12 @@
           </ul>
         </div>
         <figure class="assignment-preview">
-          <img src="assets/bai-5-noi-dung.png" alt="Nội dung bài 5 về sử dụng AI tạo sinh để sáng tạo nội dung">
-          <figcaption class="preview-note">Quy trình sáng tạo nội dung số với Gemini, DALL-E và Canva AI</figcaption>
+          <div class="assignment-scroll-container">
+            <img src="assets/bai-5-part-1.png" alt="Nội dung bài 5 - Phần 1">
+            <img src="assets/bai-5-part-2.png" alt="Nội dung bài 5 - Phần 2">
+            <img src="assets/bai-5-part-3.png" alt="Nội dung bài 5 - Phần 3">
+          </div>
+          <figcaption class="preview-note">Cuộn để xem toàn bộ minh chứng</figcaption>
         </figure>
       </article>
 
@@ -1545,8 +1736,11 @@
           </ul>
         </div>
         <figure class="assignment-preview">
-          <img src="assets/bai-6-noi-dung.png" alt="Nội dung bài 6 về sử dụng AI có trách nhiệm trong học tập và nghiên cứu">
-          <figcaption class="preview-note">Bộ nguyên tắc cá nhân khi dùng AI trong học tập</figcaption>
+          <div class="assignment-scroll-container">
+            <img src="assets/bai-6-part-1.png" alt="Nội dung bài 6 - Phần 1">
+            <img src="assets/bai-6-part-2.png" alt="Nội dung bài 6 - Phần 2">
+          </div>
+          <figcaption class="preview-note">Cuộn để xem toàn bộ minh chứng</figcaption>
         </figure>
       </article>
     </section>
@@ -1554,20 +1748,24 @@
     <section id="process" class="site-shell">
       <div class="section-head reveal">
         <h2>Quy trình</h2>
-        <p>Portfolio được xây dựng theo đúng yêu cầu: thiết lập nền tảng, hệ thống hóa bài tập, sau đó hoàn thiện sản phẩm.</p>
+        <p>Portfolio được xây dựng theo đúng yêu cầu: thiết lập nền tảng, hệ thống hóa bài tập, sau đó hoàn thiện sản
+          phẩm.</p>
       </div>
       <div class="timeline reveal">
         <article class="timeline-item">
           <h3>1. Thiết lập nền tảng</h3>
-          <p>Chọn bố cục portfolio, tạo trang giới thiệu, xác định mục tiêu học tập và cách điều hướng đến các minh chứng.</p>
+          <p>Chọn bố cục portfolio, tạo trang giới thiệu, xác định mục tiêu học tập và cách điều hướng đến các minh
+            chứng.</p>
         </article>
         <article class="timeline-item">
           <h3>2. Hệ thống hóa kết quả</h3>
-          <p>Tổng hợp bài 1 đến bài 6 thành các thẻ nội dung ngắn gọn, mỗi bài có mục tiêu, sản phẩm và đường link chi tiết.</p>
+          <p>Tổng hợp bài 1 đến bài 6 thành các thẻ nội dung ngắn gọn, mỗi bài có mục tiêu, sản phẩm và đường link chi
+            tiết.</p>
         </article>
         <article class="timeline-item">
           <h3>3. Hoàn thiện và đánh giá</h3>
-          <p>Kiểm tra tính rõ ràng, tính thẩm mỹ, liên kết, khả năng đọc trên điện thoại và mức độ phù hợp với tiêu chí chấm điểm.</p>
+          <p>Kiểm tra tính rõ ràng, tính thẩm mỹ, liên kết, khả năng đọc trên điện thoại và mức độ phù hợp với tiêu chí
+            chấm điểm.</p>
         </article>
       </div>
     </section>
@@ -1655,4 +1853,5 @@
     });
   </script>
 </body>
+
 </html>
